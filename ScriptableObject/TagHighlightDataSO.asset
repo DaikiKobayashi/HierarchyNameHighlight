@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: TagHighlightDataSO
   m_EditorClassIdentifier: 
   tags:
-  - backColor: {r: 0, g: 0.93488693, b: 1, a: 1}
+  - backColor: {r: 0, g: 0.9322033, b: 1, a: 1}
     fastName: '[='
     lastName: =]
-  - backColor: {r: 0, g: 0, b: 0, a: 1}
+  - backColor: {r: 1, g: 0.36179516, b: 0, a: 1}
     fastName: '[-'
     lastName: -]
+  - backColor: {r: 0, g: 1, b: 0.039124012, a: 1}
+    fastName: '[~'
+    lastName: ~]

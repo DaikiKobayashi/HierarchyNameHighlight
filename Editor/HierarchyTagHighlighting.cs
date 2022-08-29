@@ -9,6 +9,7 @@ namespace TagHighlight
     public class HierarchyTagHighlighting
     {
         private static readonly string k_DataPath = "Assets/HierarchyNameHighlight/ScriptableObject/TagHighlightDataSO.asset";
+        private static readonly string k_BackIcon = "Assets/HierarchyNameHighlight/icons/gradient_1x16.png";
 
         private static TagHighlightDataSO data;
 
@@ -54,7 +55,7 @@ namespace TagHighlight
                     // îwåiêFÇïœçX
                     using (new GUIColorScope(tag.backColor))
                     {
-                        GUI.Box(pos, string.Empty, GUI.skin.button);
+                        GUI.DrawTexture(pos, AssetDatabase.LoadAssetAtPath<Texture>(k_BackIcon));
                     }
 
                     // DrowIcon Top
