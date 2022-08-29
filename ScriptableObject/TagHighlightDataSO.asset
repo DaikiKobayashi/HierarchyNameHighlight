@@ -12,13 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94e3d0b2efd1334c8e031d17b687791, type: 3}
   m_Name: TagHighlightDataSO
   m_EditorClassIdentifier: 
-  backColor: {r: 0, g: 0, b: 0, a: 1}
-  HighlightingFastName: '[='
-  HighlightingLastName: =]
   tags:
-  - backColor: {r: 0, g: 0, b: 0, a: 0}
+  - backColor: {r: 0, g: 0.93488693, b: 1, a: 1}
     fastName: '[='
     lastName: =]
-  - backColor: {r: 1, g: 0, b: 0, a: 1}
+  - backColor: {r: 0, g: 0, b: 0, a: 1}
     fastName: '[-'
     lastName: -]
