@@ -8,7 +8,7 @@ namespace TagHighlight
 {
     public class HierarchyTagHighlighting
     {
-        private static readonly string k_DataPath = "Assets/Plugins/ExtendedEditor/HierarchyTagHighlight/ScriptableObject/TagHighlightDataSO.asset";
+        private static readonly string k_DataPath = "Assets/HierarchyNameHighlight/ScriptableObject/TagHighlightDataSO.asset";
 
         private static TagHighlightDataSO data;
 
