@@ -76,22 +76,21 @@ namespace TagHighlight
                 GUI.Button(drawButtomRect, EditorGUIUtility.Load("sv_icon_dot13_pix16_gizmo") as Texture2D, new GUIStyle());
             }
         }
+    }
 
+    public class GUIColorScope : IDisposable
+    {
+        private readonly UnityEngine.Color m_color;
 
-        class GUIColorScope : IDisposable
+        public GUIColorScope(Color color)
         {
-            private readonly UnityEngine.Color m_color;
+            this.m_color = UnityEngine.GUI.color;
+            UnityEngine.GUI.color = color;
+        }
 
-            public GUIColorScope(Color color)
-            {
-                this.m_color = UnityEngine.GUI.color;
-                UnityEngine.GUI.color = color;
-            }
-
-            public void Dispose()
-            {
-                UnityEngine.GUI.color = this.m_color;
-            }
+        public void Dispose()
+        {
+            UnityEngine.GUI.color = this.m_color;
         }
     }
 }

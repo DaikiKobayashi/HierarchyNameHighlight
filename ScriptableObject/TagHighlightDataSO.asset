@@ -17,17 +17,8 @@ MonoBehaviour:
   HighlightingLastName: =]
   tags:
   - backColor: {r: 0, g: 0, b: 0, a: 0}
-    fastName: 
-    lastName: 
-  - backColor: {r: 0, g: 0, b: 0, a: 0}
-    fastName: 
-    lastName: 
-  - backColor: {r: 0, g: 0, b: 0, a: 0}
-    fastName: 
-    lastName: 
-  - backColor: {r: 0, g: 0, b: 0, a: 0}
-    fastName: 
-    lastName: 
-  - backColor: {r: 0, g: 0, b: 0, a: 0}
-    fastName: 
-    lastName: 
+    fastName: '[='
+    lastName: =]
+  - backColor: {r: 1, g: 0, b: 0, a: 1}
+    fastName: '[-'
+    lastName: -]
