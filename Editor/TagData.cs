@@ -57,20 +57,4 @@ namespace TagHighlight
         }
     }
 #endif
-
-    public class LabelWidthScope : IDisposable
-    {
-        private readonly float _mLabelWidth;
-
-        public LabelWidthScope(float labelWidth)
-        {
-            _mLabelWidth = EditorGUIUtility.labelWidth;
-            EditorGUIUtility.labelWidth = labelWidth;
-        }
-
-        public void Dispose()
-        {
-            EditorGUIUtility.labelWidth = _mLabelWidth;
-        }
-    }
 }
