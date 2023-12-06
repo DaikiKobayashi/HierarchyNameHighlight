@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
 using System;
+using UnityEditor;
+using UnityEngine;
 
 namespace TagHighlight
 {
-    public class HierarchyTagHighlighting
+    public static class HierarchyTagHighlighting
     {
-        private static readonly string k_DataPath = "Assets/HierarchyNameHighlight/ScriptableObject/TagHighlightDataSO.asset";
-        private static readonly string k_BackIcon = "Assets/HierarchyNameHighlight/icons/gradient_1x16.png";
+        private const string DataPath = "Assets/HierarchyNameHighlight/ScriptableObject/TagHighlightDataSO.asset";
+        private const string BackIcon = "Assets/HierarchyNameHighlight/icons/gradient_1x16.png";
 
-        private static TagHighlightDataSO data;
+        private static TagHighlightDataSO _data;
 
         [InitializeOnLoadMethod]
         private static void OnLoad()
@@ -22,29 +20,30 @@ namespace TagHighlight
 
         private static void LoadData()
         {
-            data = AssetDatabase.LoadAssetAtPath(k_DataPath, typeof(TagHighlightDataSO)) as TagHighlightDataSO;
+            _data = AssetDatabase.LoadAssetAtPath(DataPath, typeof(TagHighlightDataSO)) as TagHighlightDataSO;
         }
 
         private static void OnGUI(int instanceID, Rect selectionRect)
         {
-            if (data is null)
+            if (_data == null)
                 LoadData();
 
-            // idÇ©ÇÁÉIÉuÉWÉFÉNÉgÇéÊìæ
+            // id„Åã„Çâ„Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„ÇíÂèñÂæó
             var target = EditorUtility.InstanceIDToObject(instanceID);
             if (target is null)
                 return;
 
-            // ÉIÉuÉWÉFÉNÉgñºÇéÊìæ
-            string targetName = target.name;
+            // „Ç™„Éñ„Ç∏„Çß„ÇØ„ÉàÂêç„ÇíÂèñÂæó
+            var targetName = target.name;
 
-            for (int i = 0; i < data.tags.Count; i++)
+            var i = 0;
+            for (; i < _data.tags.Count; i++)
             {
-                var tag = data.tags[i];
-                if (targetName == null || targetName == "")
+                var tag = _data.tags[i];
+                if (targetName == "")
                     continue;
 
-                // ÉIÉuÉWÉFÉNÉgñºÇ™ "éwíËÇ≥ÇÍÇΩï∂éöóÒ" ÇÃèÍçáÉnÉCÉâÉCÉgâª
+                // „Ç™„Éñ„Ç∏„Çß„ÇØ„ÉàÂêç„Åå "ÊåáÂÆö„Åï„Çå„ÅüÊñáÂ≠óÂàó" „ÅÆÂ†¥Âêà„Éè„Ç§„É©„Ç§„ÉàÂåñ
                 if (targetName.StartsWith(tag.fastName) && targetName.EndsWith(tag.lastName))
                 {
                     var pos = selectionRect;
@@ -52,10 +51,10 @@ namespace TagHighlight
                     pos.xMin = 31.5F;
                     pos.xMax = selectionRect.xMax;
 
-                    // îwåiêFÇïœçX
+                    // ËÉåÊôØËâ≤„ÇíÂ§âÊõ¥
                     using (new GUIColorScope(tag.backColor))
                     {
-                        GUI.DrawTexture(pos, AssetDatabase.LoadAssetAtPath<Texture>(k_BackIcon));
+                        GUI.DrawTexture(pos, AssetDatabase.LoadAssetAtPath<Texture>(BackIcon));
                     }
 
                     // DrowIcon Top
@@ -67,11 +66,11 @@ namespace TagHighlight
                     // DrawName
                     var drawNameRect = selectionRect;
                     drawNameRect.xMin = drawTopRect.xMin;
-                    GUI.Label(drawNameRect, targetName, new GUIStyle()
+                    GUI.Label(drawNameRect, targetName, new GUIStyle
                     {
                         fontStyle = FontStyle.Bold,
-                        normal = new GUIStyleState() { textColor = Color.white },
-                        focused = new GUIStyleState() { textColor = Color.white },
+                        normal = new GUIStyleState { textColor = Color.white },
+                        focused = new GUIStyleState { textColor = Color.white },
                         alignment = TextAnchor.MiddleCenter,
                     });
 
@@ -83,10 +82,6 @@ namespace TagHighlight
 
                     break;
                 }
-                else
-                {
-                    continue;
-                }
             }   
         }
 
@@ -95,17 +90,17 @@ namespace TagHighlight
 
     public class GUIColorScope : IDisposable
     {
-        private readonly UnityEngine.Color m_color;
+        private readonly Color _mColor;
 
         public GUIColorScope(Color color)
         {
-            this.m_color = UnityEngine.GUI.color;
-            UnityEngine.GUI.color = color;
+            _mColor = GUI.color;
+            GUI.color = color;
         }
 
         public void Dispose()
         {
-            UnityEngine.GUI.color = this.m_color;
+            GUI.color = _mColor;
         }
     }
 }

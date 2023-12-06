@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -9,7 +7,7 @@ using UnityEditor;
 
 namespace TagHighlight
 {
-    [System.Serializable]
+    [Serializable]
     public class TagData
     {
         public Color backColor = Color.black;
@@ -30,26 +28,26 @@ namespace TagHighlight
             var lastName = property.FindPropertyRelative("lastName");
 
             // Back Color
-            Rect backColor_rect = position;
-            backColor_rect.height = lineHeight;
-            EditorGUI.PropertyField(backColor_rect, backColor);
+            var backColorRect = position;
+            backColorRect.height = lineHeight;
+            EditorGUI.PropertyField(backColorRect, backColor);
 
             // Name Tags
-            Rect fastName_rect = position;
-            fastName_rect.height = lineHeight;
-            fastName_rect.y += lineHeight;
-            fastName_rect.width -= position.width / 2 + 10;
+            var fastNameRect = position;
+            fastNameRect.height = lineHeight;
+            fastNameRect.y += lineHeight;
+            fastNameRect.width -= position.width / 2 + 10;
 
-            Rect lastName_rect = position;
-            lastName_rect.height = lineHeight;
-            lastName_rect.y += lineHeight;
-            lastName_rect.width -= position.width / 2 + 10;
-            lastName_rect.x += position.width / 2 + 10;
+            var lastNameRect = position;
+            lastNameRect.height = lineHeight;
+            lastNameRect.y += lineHeight;
+            lastNameRect.width -= position.width / 2 + 10;
+            lastNameRect.x += position.width / 2 + 10;
 
             using (new LabelWidthScope(85F))
             {
-                EditorGUI.PropertyField(fastName_rect, fastName, new GUIContent("Top Tag"));
-                EditorGUI.PropertyField(lastName_rect, lastName, new GUIContent("Buttom Tag"));
+                EditorGUI.PropertyField(fastNameRect, fastName, new GUIContent("Top Tag"));
+                EditorGUI.PropertyField(lastNameRect, lastName, new GUIContent("Bottom Tag"));
             }
         }
 
@@ -62,17 +60,17 @@ namespace TagHighlight
 
     public class LabelWidthScope : IDisposable
     {
-        float m_labelWidth = 0;
+        private readonly float _mLabelWidth;
 
         public LabelWidthScope(float labelWidth)
         {
-            m_labelWidth = EditorGUIUtility.labelWidth;
+            _mLabelWidth = EditorGUIUtility.labelWidth;
             EditorGUIUtility.labelWidth = labelWidth;
         }
 
         public void Dispose()
         {
-            EditorGUIUtility.labelWidth = m_labelWidth;
+            EditorGUIUtility.labelWidth = _mLabelWidth;
         }
     }
 }
