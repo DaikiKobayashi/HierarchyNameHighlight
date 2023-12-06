@@ -6,7 +6,6 @@ namespace TagHighlight
 {
     public static class HierarchyTagHighlighting
     {
-        private const string DataPath = "Assets/HierarchyNameHighlight/ScriptableObject/TagHighlightDataSO.asset";
         private const string BackIcon = "Assets/HierarchyNameHighlight/icons/gradient_1x16.png";
 
         private static TagHighlightDataSO _data;
@@ -20,7 +19,7 @@ namespace TagHighlight
 
         private static void LoadData()
         {
-            _data = AssetDatabase.LoadAssetAtPath(DataPath, typeof(TagHighlightDataSO)) as TagHighlightDataSO;
+            _data = TagHighlightDataSO.instance;
         }
 
         private static void OnGUI(int instanceID, Rect selectionRect)
